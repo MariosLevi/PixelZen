@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Drawing Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Courier New', monospace;
+        }
+        #gameCanvas {
+            display: block;
+        }
+        #modeToggle {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            z-index: 10;
+            width: 120px;
+            height: 30px;
+            background: linear-gradient(to right, #333, #666);
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        #modeToggle span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            transition: background 0.3s ease, color 0.3s ease;
+            font-size: 14px;
+        }
+        #modeToggle.dark span { background: #333; color: #fff; }
+        #modeToggle.light span { background: #fff; color: #000; }
+        #modeToggle.rainbow span { background: linear-gradient(to right, red, orange, yellow, green, blue, purple); color: #000; }
+        #helpButton, #musicButton {
+            position: fixed;
+            bottom: 10px;
+            z-index: 10;
+            font-size: 16px;
+            padding: 5px 10px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Courier New', monospace;
+            transition: opacity 0.3s ease;
+        }
+        #helpButton:hover, #musicButton:hover {
+            outline: none;
+        }
+        #helpButton {
+            left: 150px;
+            color: #fff;
+        }
+        #musicButton {
+            left: 200px;
+            color: #fff;
+        }
+        #instructions {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #instructions.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #backgroundMusic {
+            display: none; /* Hidden audio element */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" tabindex="0"></canvas>
+    <div id="modeToggle" class="dark">
+        <span>Dark</span>
+    </div>
+    <button id="helpButton">?</button>
+    <button id="musicButton">Music: Off</button>
+    <div id="instructions">
+        Instructions:<br>
+        - Arrow keys to move<br>
+        - Hold Ctrl to increase size<br>
+        - Hold Shift to decrease size<br>
+        - Hold Space to draw<br>
+        - Hold E to erase<br>
+        - Mouse wheel to zoom in/out
+    </div>
+    <audio id="backgroundMusic" loop>
+        <source src="gamemusic.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="game.js"></script>
+</body>
+</html>
